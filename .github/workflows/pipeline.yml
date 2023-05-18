@@ -27,7 +27,7 @@ jobs:
 
       - name: Test files
         run: |
-          pytest
+          python -m pytest -vv test_train.py
 
   train_pipeline:
       runs-on: ubuntu-latest
