@@ -69,9 +69,9 @@ def config_mlflow():
                               log_model_signatures=True)
 
 
-def train_model(model, X_train, y_train):
+def train_model(model, X_train, y_train, epochs):
     with mlflow.start_run(run_name='experiment_01') as run:
-        model.fit(X_train, y_train, epochs=50, validation_split=0.2)
+        model.fit(X_train, y_train, epochs=epochs, validation_split=0.2)
 
 
 if __name__ == '__main__':
@@ -79,5 +79,5 @@ if __name__ == '__main__':
     X_train, y_train, X_test, y_test = process_data(X, y)
     model = create_model(X_train.shape[1])
     config_mlflow()
-    train_model(model, X_train, y_train)
+    train_model(model, X_train, y_train, 20)
 
