@@ -58,5 +58,5 @@ mlflow.tensorflow.autolog(log_models=True,
                           log_input_examples=True,
                           log_model_signatures=True)
 
-with mlflow.start_flow(run_name='experiment_01') as run:
+with mlflow.start_run(run_name='experiment_01') as run:
     model.fit(X_train, y_train, epochs=50, validation_split=0.2, verbose=3)
