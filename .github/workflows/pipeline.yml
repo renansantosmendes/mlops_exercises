@@ -8,7 +8,7 @@ on:
     - branch_01
 
 jobs:
-  ci_pipeline:
+  train_pipeline:
       runs-on: ubuntu-latest
       steps:
           - uses: actions/checkout@v1

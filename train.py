@@ -54,6 +54,9 @@ MLFLOW_TRACKING_PASSWORD = '6d730ef4a90b1caf28fbb01e5748f0874fda6077'
 
 os.environ['MLFLOW_TRACKING_USERNAME'] = MLFLOW_TRACKING_USERNAME
 os.environ['MLFLOW_TRACKING_PASSWORD'] = MLFLOW_TRACKING_PASSWORD
+
+mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
+
 mlflow.tensorflow.autolog(log_models=True,
                           log_input_examples=True,
                           log_model_signatures=True)
