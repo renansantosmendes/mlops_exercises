@@ -7,6 +7,17 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 
 
+class Data(BaseModel):
+    accelerations: float
+    fetal_movement: float
+    uterine_contractions: float
+    severe_decelerations: float
+
+
+app = FastAPI()
+
+
+@app.on_event("startup")
 def load_model():
     MLFLOW_TRACKING_URI = 'https://dagshub.com/renansantosmendes/teste.mlflow'
     MLFLOW_TRACKING_USERNAME = 'renansantosmendes'
@@ -22,16 +33,6 @@ def load_model():
     return model
 
 
-class Data(BaseModel):
-    accelerations: float
-    fetal_movement: float
-    uterine_contractions: float
-    severe_decelerations: float
-
-
-app = FastAPI()
-
-
 @app.get("/")
 def home():
     return {"Message": "Hello"}
@@ -39,6 +40,7 @@ def home():
 
 @app.post('/predict')
 def predict(request: Data):
+    print(request)
     received_data = np.array([
         request.accelerations,
         request.fetal_movement,
@@ -52,6 +54,6 @@ def predict(request: Data):
 
 
 if __name__ == '__main__':
-    # global model
+    global model
     model = load_model()
     uvicorn.run(app, host="127.0.0.1", port=8000)
