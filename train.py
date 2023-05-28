@@ -44,9 +44,9 @@ def create_model(input_shape):
     reset_seeds()
     model = Sequential()
     model.add(InputLayer(input_shape=(input_shape, )))
-    model.add(Dense(10, activation='relu' ))
-    model.add(Dense(10, activation='relu' ))
-    model.add(Dense(3, activation='softmax' ))
+    model.add(Dense(10, activation='relu'))
+    model.add(Dense(10, activation='relu'))
+    model.add(Dense(3, activation='softmax'))
 
     model.compile(loss='sparse_categorical_crossentropy',
                   optimizer='adam',
@@ -71,7 +71,7 @@ def config_mlflow():
 
 def train_model(model, X_train, y_train, epochs):
     with mlflow.start_run(run_name='experiment_01') as run:
-        model.fit(X_train, y_train, epochs=epochs, validation_split=0.2)
+        model.fit(X_train, y_train, epochs=epochs, validation_split=0.2, verbose=1)
 
 
 if __name__ == '__main__':
