@@ -75,9 +75,9 @@ def train_model(model, X_train, y_train, epochs):
 
 
 if __name__ == '__main__':
+    config_mlflow()
     X, y = get_data()
     X_train, y_train, X_test, y_test = process_data(X, y)
     model = create_model(X_train.shape[1])
-    config_mlflow()
     train_model(model, X_train, y_train, 20)
 
